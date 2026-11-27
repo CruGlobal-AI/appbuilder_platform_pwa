@@ -68,6 +68,22 @@ export default class ABMobileView extends ABMobileViewCore {
    async init() {}
 
    /**
+    * @method html()
+    * Fallback for views with no display of their own (eg an unknown .key
+    * that fell back to ABMobileView). Render nothing instead of crashing
+    * the whole Page.
+    * @param {$h} $h
+    *        Framework7 Template tool
+    * @return {fn} jsx template
+    */
+   html($h) {
+      console.warn(
+         `ABMobileView[${this.key}]: no html() for this view; rendering nothing.`,
+      );
+      return () => $h`<div class="ab-mobile-view-empty"></div>`;
+   }
+
+   /**
     * @method destroy()
     * perform any actions to clean up during a destroy/page removal
     * happens during $on("pageBeforeRemove", ()=>{})
