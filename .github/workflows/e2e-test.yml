@@ -30,13 +30,13 @@ jobs:
           - branch: master
             webpack: update
     steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v7
           with:
             path: ab_platform_pwa
             submodules: true
             ref: ${{ inputs.ref }}
             repositories: ab_service_web
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v7
           with:
             path: web
             repository: ${{ github.repository_owner }}/ab_service_web
@@ -60,7 +60,7 @@ jobs:
             repository: ${{ github.repository_owner }}/ab_service_web
 
         - name: Check out kitchen-sink tests
-          uses: actions/checkout@v4
+          uses: actions/checkout@v7
           with:
             repository: ${{ github.repository_owner }}/kitchensink_app
             path: ab/test/e2e/cypress/e2e/kitchensink_app
@@ -77,13 +77,13 @@ jobs:
           run: npm run test:e2e:ab-runtime -- --browser chrome
           working-directory: ./ab
 
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: failure()
           with:
             name: cypress-screenshots
             path: ./ab/test/e2e/cypress/screenshots
 
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: failure()
           with:
             name: ABServices.log
